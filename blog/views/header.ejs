@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="/javascripts/jquery.js"></script>
+</head>
+<body>
+    <header>
+        <h1><%= title %></h1>
+    </header>
+    <nav>
+		<span><a title="主页" href="/">首页</a></span>
+		<% if (user) { %>
+          <span><a href="/upload">上传</a></span>
+		  <span><a title="发表" href="/post">发布</a></span>
+		  <span><a title="登出" href="/logout">退出</a></span>
+		<% } else { %>
+		  <span><a title="登录" href="/login">登录</a></span>
+		  <span><a title="注册" href="/reg">注册</a></span>
+		<% } %>
+        
+        <span>
+            <form action="/search" method="get">
+                <input type="text" name="keyword" placeholder="search" class="search">
+            </form>
+        </span>
+	</nav>
+	
+    <article>
+		<% if(success) { %>
+			<div><%= success %></div>
+		<% } %>
+		
+		<% if(error) { %>
+			<div><%= error %></div>
+		<% } %>
+

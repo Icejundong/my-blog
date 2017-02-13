@@ -1,0 +1,36 @@
+<% include header%>
+    <% posts.forEach(function (post,index) { %>
+        <p>
+            <h2><a href="/u/<%= post.name %>/<%= post.time.minute %>/<%= post.title %>"><%= post.title%></a></h2>
+        </p>
+        <p class="info">
+            作者：<a href="/u/<%= post.name %>"><%= post.name %></a>
+            日期：<a href="/u/<%= post.time.minute %>"><%= post.time.minute %></a>
+        </p>
+        <p>
+            <%- post.post %>
+        </p>
+        <p class="info">阅读：<%= post.pv %> | 评论：<%= post.comments.length %></p>
+    <% })%>
+
+    <pre>-------------------------------------------</pre>
+
+<% include paging%>
+
+    <% for(var i = 1; i < pageCount + 1; i++){%>
+        <span class="prepage aaa">
+            <a  href="?p=<%= i%>"><%= i%></a>
+        </span>
+    <% } %>
+
+<script>
+    var x = window.location.search;
+    console.log(x)
+    var num = x.substr(x.length-1,x.length) || 1;
+    console.log(num)
+
+    var as = $('.aaa a')
+        as.eq(num - 1).addClass('a')
+</script>
+
+<% include footer%>
